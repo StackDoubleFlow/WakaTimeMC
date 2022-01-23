@@ -36,7 +36,7 @@ object WakaTime : ClientModInitializer {
             "--entity", currentServer.address,
             "--project", currentServer.address,
             "--language", "Minecraft",
-            "--plugin", "\"Minecraft/1.17.1 WakaTimeMC/1.0.0\""
+            "--plugin", "\"Minecraft/1.17.1 WakaTimeMC/1.0.1\""
         )
         if (isWrite) {
             command.add("--write")
