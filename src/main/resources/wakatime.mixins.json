@@ -1,0 +1,10 @@
+{
+  "required": true,
+  "package": "net.stackdoubleflow.wakatimemc.mixins",
+  "compatibilityLevel": "JAVA_17",
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "mixins": [
+  ]
+}

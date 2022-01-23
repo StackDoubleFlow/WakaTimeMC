@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "id": "wakatime",
+  "version": "${version}",
+  "name": "WakaTime",
+  "description": "Minecraft is essentially the same thing as programming, right?",
+  "authors": [
+    "StackDoubleFlow"
+  ],
+  "contact": {
+    "homepage": "https://github.com/StackDoubleFlow/WakaTimeMC",
+    "issues": "https://github.com/StackDoubleFlow/WakaTimeMC/issues",
+    "sources": "https://github.com/StackDoubleFlow/WakaTimeMC"
+  },
+  "license": "MIT",
+  "icon": "assets/wakatime/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      {
+        "adapter": "kotlin",
+        "value": "net.stackdoubleflow.wakatimemc.WakaTime"
+      }
+    ]
+  },
+  "mixins": [
+    "wakatime.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.12.12",
+    "fabric": "*",
+    "fabric-language-kotlin": ">=1.7.1+kotlin.1.6.10",
+    "minecraft": "1.17.x",
+    "java": ">=17"
+  }
+}
