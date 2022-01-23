@@ -2,6 +2,7 @@ package net.stackdoubleflow.wakatimemc
 
 import net.fabricmc.api.ClientModInitializer
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents
+import net.fabricmc.fabric.api.event.player.AttackBlockCallback
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents
 import net.fabricmc.fabric.api.event.player.UseBlockCallback
 import net.minecraft.client.MinecraftClient
@@ -57,8 +58,9 @@ object WakaTime : ClientModInitializer {
             }
         }
 
-        PlayerBlockBreakEvents.AFTER.register { _, _, _, _, _ ->
+        AttackBlockCallback.EVENT.register { _, _, _, _, _ ->
             sendHeartbeat(true)
+            ActionResult.PASS
         }
 
         UseBlockCallback.EVENT.register { _, _, _, _ ->
