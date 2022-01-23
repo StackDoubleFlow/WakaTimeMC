@@ -6,7 +6,6 @@ import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents
 import net.fabricmc.fabric.api.event.player.UseBlockCallback
 import net.minecraft.client.MinecraftClient
 import net.minecraft.util.ActionResult
-import net.minecraft.util.math.Vec3d
 
 private const val HEARTBEAT_INTERVAL = 120000000000 // 2 Minutes
 
@@ -21,16 +20,16 @@ object WakaTime : ClientModInitializer {
     // Project: <server address>
     // Filename: <server address>
 
-    fun sendHeartbeat(isWrite: Boolean) {
+    private fun sendHeartbeat(isWrite: Boolean) {
         val client = MinecraftClient.getInstance()
         val currentServer = client.currentServerEntry ?: return
         val now = System.nanoTime()
-        if (!isWrite && lastServer != currentServer.address && (now - lastSentTime) < HEARTBEAT_INTERVAL) {
+        if (!isWrite && lastServer == currentServer.address && (now - lastSentTime) < HEARTBEAT_INTERVAL) {
             return
         }
 
         val home = System.getProperty("user.home")
-        var command = mutableListOf(
+        val command = mutableListOf(
             "${home}/.wakatime/wakatime-cli/wakatime-cli",
             "--entity-type", "domain",
             "--entity", currentServer.address,
@@ -41,6 +40,7 @@ object WakaTime : ClientModInitializer {
         if (isWrite) {
             command.add("--write")
         }
+//        println("sending heartbeat")
         val processBuilder = ProcessBuilder(command)
         processBuilder.inheritIO()
         processBuilder.start()
